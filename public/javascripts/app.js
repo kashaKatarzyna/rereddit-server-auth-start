@@ -1,7 +1,16 @@
+//client side 
+
 var app = angular.module('redditFun', ['ui.router']);
 
 app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $stateProvider
+
+    .state('login', {
+      url: '/login',
+      templateUrl: '/templates/login.html',
+      controller: 'AuthCtrl'
+    })
+
     .state('home', {
       url: '/home',
       templateUrl: '/templates/home.html',
@@ -12,6 +21,7 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
         }]
        }
     })
+
     .state('post', {
       url: '/posts/:id',
       templateUrl: '/templates/posts.html',
@@ -23,5 +33,13 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
       }
     })
 
+    .state('register', {
+      url: '/register',
+      templateUrl: '/templates/register.html',
+      controller: 'AuthCtrl'
+    })
+
   $urlRouterProvider.otherwise('home');
 }]);
+
+//link the templates with controllers

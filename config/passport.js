@@ -20,3 +20,5 @@ passport.use(new LocalStrategy(
     });
   }
 ));
+
+//all authenticaton stuff

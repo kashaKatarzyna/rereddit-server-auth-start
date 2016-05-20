@@ -14,3 +14,5 @@ CommentSchema.methods.upvote = function() {
 var Comment = mongoose.model('Comment', CommentSchema);
 
 module.exports = Comment;
+
+//schema is for database. how to construct each in the database

@@ -1,13 +1,24 @@
-var express = require('express');
+//server side. create a route for posts.js
+//we define the routes here
+
+var express = require('express');  //framework for server
 var router = express.Router()
-var mongoose = require('mongoose');
-var passport = require('passport');
+var mongoose = require('mongoose');  //database
+var passport = require('passport');  //authentication
+var expressJWT = require('express-jwt');
+
+var auth = expressJWT({secret: 'myLittleSecret'});
 
 require('../config/passport');
 
-var Post = require('../models/Posts');
-var Comment = require('../models/Comments');
-var User = require('../models/Users');
+var Post = require('../models/Posts');  //schemas
+var Comment = require('../models/Comments');  //schemas
+var User = require('../models/Users');  //schemas
+
+
+ 
+
+//create route to server
 
 router.post('/register', function(req, res, next){
   if(!req.body.username || !req.body.password){
@@ -48,12 +59,13 @@ router.get('/posts', function(req, res, next) {
     if(err){ return next(err); }
 
     res.json(posts);
+
   });
 });
 
-router.post('/posts', function(req, res, next) {
-  var post = new Post(req.body);
-
+router.post('/posts', auth, function(req, res, next) {
+  var post = new Post(req.body);  //creating actual istance of post schema.. creating an actual pos here
+                                //req,ody passes in the data from the front end so we can store in database
   console.log(req.user);
 
   post.save(function(err, post){

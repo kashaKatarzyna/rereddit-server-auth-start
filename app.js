@@ -1,3 +1,5 @@
+//server side app.js
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -7,6 +9,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 
+
+//detabase name and connection
 mongoose.connect('mongodb://localhost/rereddit-dev');
 
 var routes = require('./routes/index');
